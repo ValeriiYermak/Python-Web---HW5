@@ -10,7 +10,6 @@ import aiofiles
 class HttpError(Exception):
     pass
 
-
 async def request(url: str):
     async with aiohttp.ClientSession() as session:
         try:
@@ -23,7 +22,6 @@ async def request(url: str):
         except (aiohttp.ClientConnectionError, aiohttp.InvalidURL) as err:
             raise HttpError(f'Connection error for {url}', str(err))
 
-
 async def fetch_exchange_rates(index_day):
     d = datetime.now() - timedelta(days=int(index_day))
     shift = d.strftime('%d.%m.%Y')
@@ -34,7 +32,6 @@ async def fetch_exchange_rates(index_day):
     except HttpError as err:
         print(err)
         return None
-
 
 def format_output(data):
     formatted_data = []
